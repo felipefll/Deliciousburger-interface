@@ -1,7 +1,7 @@
 import axios from 'axios'
 
 const apiDeliciousBurger = axios.create({
-  baseURL: 'http://localhost:3001'
+  baseURL: 'http://localhost:3000'
 })
 
 apiDeliciousBurger.interceptors.request.use(async config => {
