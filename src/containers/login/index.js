@@ -7,7 +7,7 @@ import * as Yup from 'yup'
 
 import loginImage from '../../assets/login-image.png'
 import logo from '../../assets/LOGO.png'
-import Button from '../../components/button'
+import { Button } from '../../components'
 import { useUser } from '../../hooks/UserContext'
 import api from '../../services/api'
 import {
@@ -20,7 +20,7 @@ import {
   ErrorMessage
 } from './styles'
 
-function Login () {
+export function Login () {
   const history = useHistory()
   const { putUserData } = useUser()
 
@@ -82,5 +82,3 @@ function Login () {
     </Container>
   )
 }
-
-export default Login
