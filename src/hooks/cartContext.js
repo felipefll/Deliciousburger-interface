@@ -4,25 +4,65 @@ import React, { createContext, useContext, useState, useEffect } from 'react'
 const CartContext = createContext({})
 
 export const CartProvider = ({ children }) => {
-  const [cartProduts, setCartProdutcs] = useState([])
+  const [cartProducts, setCartProdutcs] = useState([])
+
+  const updateLocalStorage = async (products) => {
+    await localStorage.setItem('deliciousburger:cartInfo', JSON.stringify(products))
+  }
 
   const putProductInCart = async product => {
-    const cartIndex = cartProduts.findIndex(prd => prd.id === product.id)
+    const cartIndex = cartProducts.findIndex(prd => prd.id === product.id)
 
     let newCartProducts = []
     if (cartIndex >= 0) {
-      newCartProducts = cartProduts
+      newCartProducts = cartProducts
 
       newCartProducts[cartIndex].quantity =
-      newCartProducts[cartIndex].quantity + 1
+        newCartProducts[cartIndex].quantity + 1
 
       setCartProdutcs(newCartProducts)
     } else {
       product.quantity = 1
-      newCartProducts = [...cartProduts, product]
+      newCartProducts = [...cartProducts, product]
       setCartProdutcs(newCartProducts)
     }
-    await localStorage.setItem('deliciousburger:cartInfo', JSON.stringify(newCartProducts))
+    await updateLocalStorage(newCartProducts)
+  }
+
+  const deleteProducts = async productId => {
+    const newCart = cartProducts.filter(product => product.id !== productId)
+
+    setCartProdutcs(newCart)
+    await updateLocalStorage(newCart)
+  }
+
+  const increaseProducts = async productId => {
+    const newCart = cartProducts.map(product => {
+      return product.id === productId
+        ? { ...product, quantity: product.quantity + 1 }
+        : product
+    })
+
+    setCartProdutcs(newCart)
+
+    await updateLocalStorage(newCart)
+  }
+
+  const decreaseProducts = async productId => {
+    const cartIndex = cartProducts.findIndex(pd => pd.id === productId)
+
+    if (cartProducts[cartIndex].quantity > 1) {
+      const newCart = cartProducts.map(product => {
+        return product.id === productId
+          ? { ...product, quantity: product.quantity - 1 }
+          : product
+      })
+      setCartProdutcs(newCart)
+
+      await updateLocalStorage(newCart)
+    } else {
+      deleteProducts(productId)
+    }
   }
 
   useEffect(() => {
@@ -38,7 +78,7 @@ export const CartProvider = ({ children }) => {
   }, [])
 
   return (
-    <CartContext.Provider value={{ putProductInCart, cartProduts }}>
+    <CartContext.Provider value={{ putProductInCart, cartProducts, increaseProducts, decreaseProducts }}>
       {children}
     </CartContext.Provider>
   )
