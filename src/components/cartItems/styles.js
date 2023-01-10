@@ -6,6 +6,7 @@ box-shadow: 0px 10px 40px rgba(0, 0, 0, 0.3);
 border-radius: 20px;
 padding: 10px;
 width: max-content;
+margin-left: 30px
 `
 export const Header = styled.div`
 display: grid;
@@ -16,6 +17,7 @@ p {
     font-size: 16px;
     color: #FBAF30;
     font-weight: bold;
+    
 }
 `
 
@@ -48,6 +50,7 @@ p {
     }
 p{
     margin-top: 5px;
+    
 }
 
 }
