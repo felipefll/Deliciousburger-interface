@@ -9,18 +9,22 @@ import React, { useEffect, useState } from 'react'
 
 import api from '../../../services/api'
 import formatDate from '../../../utils/formatDate'
+import status from './order-status'
 import Row from './row.js'
-import { Container } from './styles'
+import { Container, Menu, LinkMenu } from './styles'
 
 export function Orders () {
-  const [orders, SetOrders] = useState([])
+  const [orders, setOrders] = useState([])
+  const [filteredOrders, setFilteredOrders] = useState([])
+  const [activeStatus, setActiveStatus] = useState(1)
   const [rows, SetRows] = useState([])
 
   useEffect(() => {
     async function loadOrders () {
       const { data } = await api.get('orders')
 
-      SetOrders(data)
+      setOrders(data)
+      setFilteredOrders(data)
     }
 
     loadOrders()
@@ -37,30 +41,50 @@ export function Orders () {
   }
 
   useEffect(() => {
-    const newRows = orders.map(ord => createData(ord))
+    const newRows = filteredOrders.map(ord => createData(ord))
     SetRows(newRows)
-  }, [orders])
+  }, [filteredOrders])
+
+  function handleStatus (status) {
+    if (status.id === 1) {
+      setFilteredOrders(orders)
+    } else {
+      const newOrders = orders.filter(order => order.status === status.value)
+      setFilteredOrders(newOrders)
+    }
+    setActiveStatus(status.id)
+  }
 
   return (
     <Container>
-    <TableContainer component={Paper}>
-      <Table aria-label="collapsible table">
-        <TableHead>
-          <TableRow>
-            <TableCell />
-            <TableCell>Pedidos</TableCell>
-            <TableCell >Cliente</TableCell>
-            <TableCell >Data do pedido</TableCell>
-            <TableCell >Status</TableCell>
-          </TableRow>
-        </TableHead>
-        <TableBody>
-          {rows.map((row) => (
-            <Row key={row.orderId} row={row} />
-          ))}
-        </TableBody>
-      </Table>
-    </TableContainer>
+      <Menu>
+        {status && status.map(status => (
+          <LinkMenu key={status.id}
+            onClick={() => handleStatus(status)}
+            isActiveStatus={activeStatus === status.id}
+          >{status.label}
+          </LinkMenu>
+        ))}
+
+      </Menu>
+      <TableContainer component={Paper}>
+        <Table aria-label="collapsible table">
+          <TableHead>
+            <TableRow>
+              <TableCell />
+              <TableCell>Pedidos</TableCell>
+              <TableCell >Cliente</TableCell>
+              <TableCell >Data do pedido</TableCell>
+              <TableCell >Status</TableCell>
+            </TableRow>
+          </TableHead>
+          <TableBody>
+            {rows.map((row) => (
+              <Row key={row.orderId} row={row} />
+            ))}
+          </TableBody>
+        </Table>
+      </TableContainer>
     </Container>
   )
 }
