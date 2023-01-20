@@ -1,12 +1,8 @@
 import ReactSelect from 'react-select'
 import styled from 'styled-components'
 
-import Background from '../../../assets/background.png'
-
 export const Container = styled.div`
-    background: #efefef;
     min-height: 100vh;
-    background: #FFFFFF url('${Background}') no-repeat right top fixed;
     padding: 20px;
 `
 export const ProductImg = styled.img`
@@ -26,7 +22,7 @@ export const ReactSelectStyle = styled(ReactSelect)`
 `
 export const Menu = styled.div`
     display: flex;
-    gap: 50px;
+    gap: 20px;
     justify-content: center;
     margin: 20px 0;
     background-color: #efefef;

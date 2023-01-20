@@ -57,13 +57,14 @@ export function Row ({ row, setOrders, orders }) {
           <ReactSelectStyle
             options={status.filter(sts => sts.value !== 'Todos')}
             menuPortalTarget={document.bory}
+            menuPosition='fixed'
             placeholder="Status"
             defaultValue={status.find(option => option.value === row.status) || null}
 
             onChange={newStatus => {
               setNewStatus(row.orderId, newStatus.value)
             }}
-            isLoading={isLoading}
+          isLoading={isLoading}
           />
         </TableCell>
       </TableRow>
