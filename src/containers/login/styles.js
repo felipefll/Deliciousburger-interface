@@ -12,21 +12,29 @@ align-items: center;
 `
 
 export const LoginImage = styled.img`
-height: 70%;
+height: 85%;
 `
 
 export const ContainerItens = styled.div`
 background: #312C30;
 border-radius: 0 10px 10px 0;
-height: 70%;
+height: 85%;
 padding: 25px 75px;
 display: flex;
 flex-direction: column;
 justify-content: center;
 
+img{
+    width: 200px;
+    margin-left: 100px;
+    margin-top: 0px;
+    
+}
+
 form {
     display: flex;
     flex-direction: column;
+    
 }
 
 
@@ -37,7 +45,7 @@ h1 {
     line-height: 28px;
     color: #FFFFFF;
     text-align: center;
-    margin-top: 80px;
+    margin-top: 8px;
 }
 `
 
