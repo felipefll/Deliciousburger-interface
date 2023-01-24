@@ -15,7 +15,7 @@ form {
     padding: 30px;
     display: flex;
     flex-direction: column;
-    gap: 6px;
+    gap: 15px;
     .cBtAnJ{
         font-size: 15px;
         margin-top: 2px;
@@ -61,4 +61,17 @@ export const LabelUpload = styled.label`
         width: 1px;
         opacity: 0;
     }
+`
+
+export const ContainerInput = styled.div`
+    display: flex;
+    align-items: baseline;
+    gap: 10px;
+
+    input {
+        width: 15px;
+        height: 15px;
+        cursor: pointer;
+    }
+
 `

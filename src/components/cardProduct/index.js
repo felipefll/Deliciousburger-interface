@@ -11,21 +11,22 @@ export function CardProduct ({ product }) {
   const { push } = useHistory()
 
   return (
-        <Container>
-            <Image src={product.url} alt="imagem do produto" />
-            <div>
-                <ProductName>{product.name}</ProductName>
-                <ProductPrice>{product.formatedPrice}</ProductPrice>
-                <Button
-                onClick={() => {
-                  putProductInCart(product)
-                  push('/carrinho')
-                }}
-                >
-                  dicionar</Button>
-            </div>
+    <Container>
+      <Image src={product.url} alt="imagem do produto" />
+      <div>
+        <ProductName>{product.name}</ProductName>
+        <ProductPrice>{product.formatedPrice}</ProductPrice>
+        <Button
+          onClick={() => {
+            putProductInCart(product)
+            push('/carrinho')
+          }}
+        >
+          Adicionar
+        </Button>
+      </div>
 
-        </Container>
+    </Container>
   )
 }
 

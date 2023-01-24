@@ -7,6 +7,7 @@ import { Container, CategoryImg, ContainerItems, Image, Button } from './styles'
 
 export function CategoryCarousel () {
   const [categories, setCategories] = useState([])
+
   useEffect(() => {
     async function loadCategories () {
       const { data } = await api.get('categories')
