@@ -6,6 +6,10 @@ Os administradores podem ver os pedidos, adicionar e editar informações dos pr
 Na criação da interface foi utilizado: React, styled-components, react-toastify para criar notificações personalizadas, react-hooks, useContext, react-router-dom, axios, e a biblioteca yup para fazer a validação dos dados.
 Na sessão administrador, foi utilizado a biblioteca MUI para o uso dos ícones e criação das tabelas.
 
+Video de apresentação
+
+
+
 ![1 login](https://user-images.githubusercontent.com/56659697/214382869-59a44ed9-e6e9-493b-84f5-6e4e09005176.png)
 ![2 cadastro](https://user-images.githubusercontent.com/56659697/214382889-248a48c4-86ff-4547-b6b6-512c6f2fe4d6.png)
 <img width="953" alt="3 home" src="https://user-images.githubusercontent.com/56659697/214382981-34f373fe-ba7c-4a8d-b265-68d1d0b4a6d0.png">
