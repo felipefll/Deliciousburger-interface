@@ -87,12 +87,3 @@ a{
     text-decoration: underline;
 }
 `
-
-export const ErrorMessage = styled.p`
-font-style: normal;
-font-weight: normal;
-font-size: 20px;
-line-height: 16px;
-color: #FBAF30;
-margin-top: 10px;
-`
