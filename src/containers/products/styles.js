@@ -27,7 +27,7 @@ padding-bottom: 5px;
 `
 export const ProductsContainer = styled.div`
 display: grid;
-grid-template-columns: repeat(2, 1fr);
+grid-template-columns: repeat(3, 1fr);
 gap: 20px;
 padding: 40px;
 justify-items: center;
